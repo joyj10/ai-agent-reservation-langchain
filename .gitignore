@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# VS Code settings (if used)
+.vscode/
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
+
+# Pyre type checker
+.pyre/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Log files
+*.log
+
+# dotenv environment variables
+.env
+.env.*
+
+# Coverage reports
+htmlcov/
+coverage.xml
+.coverage
+.cache
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Packaging
+*.egg-info/
+.eggs/
+
+# Wheels
+*.whl
+
+# Language server files
+.pyre/
+
+# Local test results / temp files
+tmp/
+temp/
+
+# Mac OS
+.DS_Store
+
+# Other editors
+*.swp
+*.swo
+
+# FastAPI generated OpenAPI docs cache (if used)
+openapi.json
+
+# Local database files (if any)
+*.sqlite*

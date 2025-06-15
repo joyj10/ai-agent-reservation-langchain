@@ -59,6 +59,36 @@ ai-agent-reservation-langchain/
 | 배포 환경                | 미구현                                   |
 | 상태 관리 (확장 가능)    | Redis 등 활용 가능 (Short-term Memory 구성 시) |
 
+
+---
+## 🤖 이번 프로젝트에 적용한 LLM: Gemini 2.0 Flash
+
+```text
+self.llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash",  # 최신 Gemini Flash 모델 (2025 기준)
+    temperature=0              # 일관된 결과를 위한 설정
+)
+```
+- gemini-2.0-flash는 Google에서 제공하는 최신 Flash 계열 모델
+  - 최대 100만 토큰 context 지원 
+  - 응답 속도가 빠르고, 멀티턴 챗봇이나 실시간 처리 서비스에 적합 
+  - 비용도 비교적 저렴해서 테스트용/프로토타입에 잘 어울림
+
+- temperature=0은 항상 비슷한 결과를 출력하게 해주는 옵션
+  - 테스트 자동화나 의도 분류 같은 결정 기반 로직에는 꼭 필요한 설정 
+  - 온도를 높이면 창의적인 응답은 늘지만, 같은 입력에도 결과가 달라질 수 있음 
+  - 이번 프로젝트에서는 의도(Intent) 판단 → 툴 선택 흐름이라 0이 안정적임
+  - temperature 옵션
+    - temperature=0:
+      - 응답이 논리적이고 예측 가능 
+      - 테스트나 분기 판단에 적합
+    - temperature=0.7~1.0:
+    - 응답이 자연스럽고 창의적 
+    - 글쓰기, 요약, 아이디어 생성 등에 적합
+
+
+
+
 ---
 
 ## ✨ 주요 기능

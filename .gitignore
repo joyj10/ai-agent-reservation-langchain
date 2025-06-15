@@ -71,6 +71,14 @@ temp/
 
 # FastAPI generated OpenAPI docs cache (if used)
 openapi.json
+docs/
 
 # Local database files (if any)
 *.sqlite*
+
+# temp file
+*.json
+*.tmp
+*.cache
+outputs/
+storage/

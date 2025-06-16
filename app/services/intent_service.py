@@ -1,5 +1,6 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from app.core.config import GOOGLE_API_KEY
+from app.core.logger import logger
 
 class IntentService:
     def __init__(self):
@@ -23,4 +24,5 @@ class IntentService:
         의도:
         """
         response = self.llm.invoke(prompt)
+        logger.info(f"사용자 요청 분석: {response}")
         return response.content.strip()

@@ -8,5 +8,5 @@ agent_service = AgentService()
 
 @router.post("/query", response_model=AgentResponse)
 async def handle_query(request: AgentRequest):
-    response = await agent_service.handle_request(request.user_input)
+    response = await agent_service.handle_request(request.user_input, request.user_id)
     return AgentResponse(result=response)

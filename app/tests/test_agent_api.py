@@ -11,7 +11,7 @@ from app.main import app
 client = TestClient(app)
 
 def test_query_api_single():
-    payload = {"user_input": "서울 호텔 예약해줘"}
+    payload = {"user_input": "서울 호텔 예약해줘", "user_id": 1}
     response = client.post("/agent/query", json=payload)
 
     print("응답 결과:", response.json())

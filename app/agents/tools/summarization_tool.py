@@ -1,4 +1,18 @@
-class SummarizationTool:
-    async def summarize(self, user_input: str) -> str:
-        # TODO: 예약 요청 요약 구현
-        return f"'{user_input}' 요청을 요약했습니다. (모의 응답)"
+from langchain.agents import tool
+
+@tool
+def summarize_tool(text: str) -> str:
+    """
+    예약 관련 요청 또는 장소 정보를 요약하는 도구입니다.
+
+    사용자가 복잡하게 설명한 예약 요청이나 검색 결과를 간결하게 정리할 때 사용됩니다.
+
+    사용 예:
+    - "다시 한 번 정리해줘"
+    - "내가 말한 내용을 요약해서 보여줘"
+    - "서울에서 친구들과 모임할 장소를 예약하려고 하는데 정리해줘"
+
+    입력: 예약 관련 설명 텍스트
+    출력: 요약된 텍스트
+    """
+    return f"'{text}' 내용이 요약되었습니다. (모의 응답)"

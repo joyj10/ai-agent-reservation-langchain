@@ -1,4 +1,19 @@
-class BookingTool:
-    async def process_booking(self, user_input: str) -> str:
-        # TODO: 예약 등록/취소/수정 처리 구현
-        return f"'{user_input}' 예약 요청을 처리했습니다. (모의 응답)"
+from langchain.agents import tool
+
+@tool
+def booking_tool(query: str) -> str:
+    """
+    장소 예약 요청을 처리하는 도구입니다.
+
+    사용자는 자연어로 회의실, 카페, 호텔 등의 장소 예약을 요청할 수 있으며,
+    이 툴은 해당 요청을 파악하여 처리 흐름으로 연결해 줍니다.
+
+    사용 예:
+    - "내일 오전 10시에 회의실 예약해줘"
+    - "서울 강남에 있는 카페를 오늘 오후에 예약하고 싶어"
+    - "이번 주말에 친구들과 모임할 장소 예약해줘"
+
+    입력: 자연어 형식의 장소 예약 요청
+    출력: 예약 요청에 대한 처리 결과 메시지
+    """
+    return f"'{query}' 예약 요청을 처리했습니다. (모의 응답)"

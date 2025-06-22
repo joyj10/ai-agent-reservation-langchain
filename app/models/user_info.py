@@ -2,4 +2,5 @@ from pydantic import BaseModel
 
 class UserInfo(BaseModel):
     user_id: int
-    user_name: str
+    name: str
+    contact: str

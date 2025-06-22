@@ -12,9 +12,10 @@ client = TestClient(app)
 
 def test_query_api_single():
     payload = {
-        "user_input": "서울 컨벤션 A홀 예약 해줘",
+        "user_input": "서울 컨벤션 A홀로 내일 3시 예약 해줘",
         "user_id": 1,
-        "user_name": "wony"
+        "name": "wony",
+        "contact": "010-1234-1234"
     }
     response = client.post("/agent/query", json=payload)
 

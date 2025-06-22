@@ -11,7 +11,8 @@ agent_service = AgentService()
 async def handle_query(request: AgentRequest):
     user_info = UserInfo(
         user_id=request.user_id,
-        user_name=request.user_name
+        name=request.name,
+        contact=request.contact
     )
 
     response = await agent_service.handle_request(request.user_input, user_info)

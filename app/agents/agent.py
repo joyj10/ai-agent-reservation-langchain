@@ -28,9 +28,55 @@ class ReservationAgent:
         ]
 
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", "당신은 사용자의 요청에 따라 장소 예약을 생성, 수정, 취소하는 비서입니다."),
+            ("system",
+             """
+             당신은 친절하고 유능한 AI 비서입니다. 사용자의 요청에 따라 다음의 도구를 적절하게 선택해 실행해야 합니다.
+             
+             ### 🔐 사용자 정보
+             {user_info}
+             
+             ### 🛠️ 사용 가능한 도구 목록
+             
+             1. **booking_tool**
+                 - 장소 예약, 예약 수정, 예약 취소를 담당합니다.
+                 - 호출 시 다음과 같은 입력 필드를 받을 수 있습니다:
+                     - `action`: 예약 요청의 종류 ("create", "update", "cancel")
+                     - `name`: 예약자 이름
+                     - `date`: 예약 날짜 (예: "2025-06-23")
+                     - `time`: 예약 시간 (예: "15:00")
+                     - `location`: 장소 (예: "강남 회의실 A")
+                     - `reservation_id`: 예약 ID (수정/취소 시 필요)
+                     - `contact`: 연락처
+                     - `memo`: 기타 메모
+             
+                 - 예시:
+                     - "내일 오전 10시에 회의실 예약해줘" → `action`: "create"
+                     - "예약 ID 1234를 오후 3시로 변경해줘" → `action`: "update"
+                     - "예약 ID 5678을 취소해줘" → `action`: "cancel"
+             
+             2. **search_tool**
+                 - 장소, 지역, 추천 장소, 예약 가능 여부를 검색합니다.
+                 - 예시:
+                     - "강남 근처 회의실 검색해줘"
+                     - "오늘 가능한 식당 찾아줘"
+             
+             3. **summarization_tool**
+                 - 긴 텍스트를 간결하게 요약합니다.
+                 - 예시:
+                     - "아래 대화 요약해줘"
+                     - "회의록 요약해줘"
+             
+             ### 🧠 응답 지침
+             
+             - 사용자의 요청을 이해한 뒤, 가장 적절한 도구를 **정확한 파라미터와 함께** 호출하세요.
+             - 정보가 부족하거나 애매하면 **추가 질문**을 통해 명확한 입력값을 확보하세요.
+             - 툴의 입력 필드에 맞게 `action`, `date`, `time`, `location` 등을 **정확히 추출**해 주세요.
+             - 예약 요청 시 `예약자 이름`, `날짜`, `시간`, `장소`가 모두 필요한 경우 꼭 확인하세요.
+             - 사용자의 상황과 감정을 고려해 응답은 **친절하고 명확하게** 작성하세요.
+             
+             """),
             ("user", "{input}"),
-            MessagesPlaceholder(variable_name="agent_scratchpad"),
+            MessagesPlaceholder(variable_name="agent_scratchpad")
         ])
 
         # 최신 방식: create_tool_calling_agent + AgentExecutor
@@ -48,7 +94,7 @@ class ReservationAgent:
             result = await self.agent_executor.ainvoke(
                 {
                     "input": user_input,
-                    "user_info": user_info,
+                    "user_info": user_info.model_dump()
                 },
                 config={"configurable": {"memory": memory}},
             )

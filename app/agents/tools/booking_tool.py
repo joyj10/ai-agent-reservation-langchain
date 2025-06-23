@@ -1,7 +1,6 @@
 from typing import Optional
 
-from langchain.tools import tool  # 사용하는 프레임워크에 맞게 수정
-from pip._internal.commands import inspect
+from langchain.tools import tool
 
 from app.agents.tools.booking_api_client import create_booking, update_booking, cancel_booking
 from app.core.logger import logger

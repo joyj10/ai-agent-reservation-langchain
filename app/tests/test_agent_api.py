@@ -1,6 +1,5 @@
-import sys
 import os
-import pytest
+import sys
 
 # sys.path 추가로 루트 경로 인식
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")

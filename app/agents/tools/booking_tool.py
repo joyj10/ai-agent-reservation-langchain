@@ -30,7 +30,6 @@ async def booking_tool(
    memo: 기타 메모
    """
     # 디버깅용
-    # 또는 print로도 가능
     print(
         f"[booking_tool] action={action}, name={name}, date={date}, time={time}, "
         f"location={location}, reservation_id={reservation_id}, contact={contact}, memo={memo}"

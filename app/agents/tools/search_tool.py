@@ -1,4 +1,7 @@
-from langchain.agents import tool
+from langchain.tools import tool
+import asyncio
+from app.agents.tools.search_api_client import search_place
+
 
 @tool
 def search_tool(query: str) -> str:
@@ -16,4 +19,7 @@ def search_tool(query: str) -> str:
     입력: 자연어 형식의 검색 요청
     출력: 검색 결과에 대한 요약 응답
     """
-    return f"'{query}'에 대한 검색 결과입니다. (모의 응답)"
+    try:
+        return asyncio.run(search_place(query))
+    except Exception as e:
+        return f"[에러] 처리 중 문제가 발생했습니다: {e}"

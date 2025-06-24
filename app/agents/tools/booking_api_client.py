@@ -14,6 +14,7 @@ async def create_booking(
     """
     return (
         "[MOCK 응답] 예약 등록 완료\n"
+        f"예약번호: {date}_01\n"
         f"예약자: {name}\n"
         f"일시: {date} {time}\n"
         f"장소: {location}\n"
